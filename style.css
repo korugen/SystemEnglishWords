@@ -92,11 +92,11 @@ body {
 }
 .word.concealed { color: transparent; text-shadow: 0 0 14px var(--muted); cursor: pointer; }
 .emoji {
-  font-size: clamp(72px, 28vw, 132px);
+  font-size: clamp(56px, 22vw, 120px);
   line-height: 1.15;
   margin: 8px 0 6px;
   font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-  word-break: keep-all;
+  white-space: nowrap;
 }
 .scene {
   margin: 4px auto 14px;
