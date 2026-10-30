@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1f6feb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>シス単イメージ帳</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button id="btn-list" class="icon-btn" aria-label="一覧">☰</button>
+    <h1 class="title">シス単イメージ帳</h1>
+    <button id="btn-settings" class="icon-btn" aria-label="設定">⚙</button>
+  </header>
+
+  <div id="banner" class="banner" hidden></div>
+
+  <main id="view-card" class="view">
+    <article id="card" class="card">
+      <div class="card-head">
+        <span id="c-no" class="no"></span>
+        <span id="c-pos" class="pos"></span>
+      </div>
+      <h2 id="c-word" class="word"></h2>
+      <div id="c-emoji" class="emoji" aria-hidden="true"></div>
+      <p id="c-img" class="scene"></p>
+      <button id="c-ja" class="meaning" type="button"></button>
+      <div class="card-tools">
+        <a id="c-search" class="chip" target="_blank" rel="noopener">🔍 画像検索</a>
+        <button id="c-memo-btn" class="chip" type="button">✏️ 自分のイメージ</button>
+      </div>
+      <p id="c-memo" class="memo" hidden></p>
+    </article>
+  </main>
+
+  <section id="view-list" class="view" hidden>
+    <div class="list-tools">
+      <input id="search" type="search" placeholder="単語・番号・意味で検索" autocomplete="off">
+    </div>
+    <ol id="list" class="list"></ol>
+  </section>
+
+  <section id="view-settings" class="view" hidden>
+    <div class="panel">
+      <h3>表示</h3>
+      <label class="row"><input id="opt-hide-ja" type="checkbox"> 意味を隠す（タップで表示）</label>
+      <label class="row"><input id="opt-hide-word" type="checkbox"> 英単語を隠す（イメージから思い出す練習）</label>
+    </div>
+    <div class="panel">
+      <h3>シス単の順番データ</h3>
+      <p class="help">
+        1行に「番号 単語」の形で入力します（例: <code>1 agree</code>）。
+        <code>#</code> で始まる行はコメントです。ここで保存した内容はこの端末だけに保存され、
+        リポジトリの <code>data/order.txt</code> より優先されます。
+      </p>
+      <textarea id="order-text" rows="10" spellcheck="false" placeholder="1 agree&#10;2 oppose&#10;..."></textarea>
+      <div class="row gap">
+        <button id="order-save" class="btn primary" type="button">この端末に保存</button>
+        <button id="order-reset" class="btn" type="button">端末の保存を消す</button>
+      </div>
+      <p id="order-status" class="help"></p>
+    </div>
+    <div class="panel">
+      <h3>統計</h3>
+      <p id="stats" class="help"></p>
+    </div>
+  </section>
+
+  <nav id="pager" class="pager">
+    <button id="prev" class="nav-btn" aria-label="前へ">◀</button>
+    <form id="jump" class="jump">
+      <input id="jump-no" type="number" inputmode="numeric" min="1" placeholder="No.">
+      <span id="total" class="total"></span>
+    </form>
+    <button id="next" class="nav-btn" aria-label="次へ">▶</button>
+  </nav>
+
+  <dialog id="memo-dialog" class="dialog">
+    <form method="dialog">
+      <h3 id="memo-title"></h3>
+      <p class="help">自分なりのイメージ・語呂・覚え方をメモ（この端末に保存）</p>
+      <textarea id="memo-text" rows="5"></textarea>
+      <div class="row gap end">
+        <button value="cancel" class="btn">閉じる</button>
+        <button id="memo-save" value="save" class="btn primary">保存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
